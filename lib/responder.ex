@@ -12,7 +12,7 @@ defmodule Responder do
       def respond(conn, code \\ 200, body) do
         conn
         |> put_resp_content_type("application/json")
-        |> send_resp(code, body |> Responder.jsonify!)
+        |> send_resp(code, body |> Poison.encode!)
       end
     end
   end
@@ -26,7 +26,7 @@ defmodule Responder do
         code: code,
         message: "Not Found"
       }
-    } |> jsonify!
+    } |> Poison.encode!
     
     {code, body}
   end
@@ -38,12 +38,8 @@ defmodule Responder do
         code: code,
         message: "Internal Server Error"
       }
-    } |> jsonify!
+    } |> Poison.encode!
     
     {code, body}
-  end
-
-  def jsonify!(map) do
-    Poison.encode!(map)
   end
 end
