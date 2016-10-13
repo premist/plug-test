@@ -3,6 +3,8 @@ defmodule MainRouter do
   use Responder
 
   plug Plug.Logger
+  plug Plug.Static, at: "/s/", from: "./public"
+
   plug :match
   plug :dispatch
 
