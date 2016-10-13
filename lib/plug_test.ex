@@ -6,9 +6,11 @@ defmodule PlugTest do
   def start(_type, _args) do
     import Supervisor.Spec, warn: false
 
+    port = Application.get_env(:plug_test, :port)
+
     # Define workers and child supervisors to be supervised
     children = [
-      Plug.Adapters.Cowboy.child_spec(:http, MyRouter, [], [port: 4001])
+      Plug.Adapters.Cowboy.child_spec(:http, MainRouter, [], [port: port])
       # Starts a worker by calling: PlugTest.Worker.start_link(arg1, arg2, arg3)
       # worker(PlugTest.Worker, [arg1, arg2, arg3]),
     ]

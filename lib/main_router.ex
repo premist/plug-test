@@ -1,4 +1,4 @@
-defmodule MyRouter do
+defmodule MainRouter do
   use Plug.Router
 
   plug Plug.Logger
