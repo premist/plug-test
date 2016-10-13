@@ -1,5 +1,6 @@
 defmodule MainRouter do
   use Plug.Router
+  use Responder
 
   plug Plug.Logger
   plug :match
@@ -7,11 +8,11 @@ defmodule MainRouter do
 
   get "/hello" do
     conn
-    |> send_resp(200, "world")
+    |> respond(200, %{hello: "world"})
   end
 
   match _ do
     conn
-    |> send_resp(404, "oops")
+    |> error(:not_found)
   end
 end
