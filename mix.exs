@@ -14,7 +14,7 @@ defmodule PlugTest.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger, :sqlite_ecto, :ecto, :cowboy, :plug],
+    [applications: [:logger, :cowboy, :plug, :poison],
      mod: {PlugTest, []}]
   end
 
@@ -30,7 +30,6 @@ defmodule PlugTest.Mixfile do
   defp deps do
     [{:cowboy, "~> 1.0.0"},
      {:plug, "~> 1.0"},
-     {:sqlite_ecto, "~> 1.0.0"},
-     {:ecto, "~> 1.0"}]
+     {:poison, "~> 3.0"}]
   end
 end
