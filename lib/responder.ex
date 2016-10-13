@@ -8,6 +8,12 @@ defmodule Responder do
         |> put_resp_content_type("application/json")
         |> send_resp(code, resp)
       end
+
+      def respond(conn, code \\ 200, body) do
+        conn
+        |> put_resp_content_type("application/json")
+        |> send_resp(code, body |> Responder.jsonify!)
+      end
     end
   end
 
