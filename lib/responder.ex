@@ -20,25 +20,27 @@ defmodule Responder do
   def error(type \\ :internal_server_error)
 
   def error(:not_found) do
+    code = 404
     body = %{
       error: %{
-        code: 404,
+        code: code,
         message: "Not Found"
       }
     } |> jsonify!
     
-    {404, body}
+    {code, body}
   end
 
   def error(:internal_server_error) do
+    code = 500
     body = %{
       error: %{
-        code: 500,
+        code: code,
         message: "Internal Server Error"
       }
     } |> jsonify!
     
-    {500, body}
+    {code, body}
   end
 
   def jsonify!(map) do
